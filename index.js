@@ -1,17 +1,10 @@
-function levelOrder(root) {
-  if (!root) return [];
-  const result = [];
-  const queue = [root];
-  while (queue.length) {
-    const levelSize = queue.length;
-    const currentLevel = [];
-    for (let i = 0; i < levelSize; i++) {
-      const node = queue.shift();
-      currentLevel.push(node.val);
-      if (node.left) queue.push(node.left);
-      if (node.right) queue.push(node.right);
-    }
-    result.push(currentLevel);
+function rob(nums) {
+  let prevMax = 0;
+  let currMax = 0;
+  for (const num of nums) {
+    const temp = currMax;
+    currMax = Math.max(prevMax + num, currMax);
+    prevMax = temp;
   }
-  return result;
+  return currMax;
 }
