@@ -1,12 +1,18 @@
-const insertionSort = (arr) => {
-  for (let i = 1; i < arr.length; i++) {
-    let key = arr[i];
-    let j = i - 1;
-    while (j >= 0 && arr[j] > key) {
-      arr[j + 1] = arr[j];
-      j--;
+function permute(nums) {
+  const result = [];
+  backtrack([]);
+  return result;
+  function backtrack(permutation) {
+    if (permutation.length === nums.length) {
+      result.push([...permutation]);
+      return;
     }
-    arr[j + 1] = key;
+    for (const num of nums) {
+      if (!permutation.includes(num)) {
+        permutation.push(num);
+        backtrack(permutation);
+        permutation.pop();
+      }
+    }
   }
-  return arr;
-};
+}
